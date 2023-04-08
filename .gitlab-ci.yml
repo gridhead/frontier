@@ -1,0 +1,42 @@
+# Frontier
+# Copyright (C) 2023 Akashdeep Dhar
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Reference for CI pipeline file was taken from the following location
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Bash.gitlab-ci.yml
+
+image: fedora:latest
+
+before_script:
+  - echo "Setup secure shell client configuration for automatic authentication"
+  - cat $sshdconf > /root/.ssh/config
+  - echo "Install Ansible package required for setting up the configuration files"
+  - dnf install ansible --setopt=install_weak_deps=False --assumeyes
+  - echo "Install Docker CE package required for deploying the stated service"
+  - dnf install dnf-plugins-core --setopt=install_weak_deps=False --assumeyes
+  - dnf config-manager --add-repo "https://download.docker.com/linux/fedora/docker-ce.repo"
+  - dnf install docker-ce docker-compose-plugin --setopt=install_weak_deps=False --assumeyes
+
+jump.apexaltruism.net:
+  script:
+    - echo "Implement the compose configuration file using the stored variable file"
+    - pwd
+    - ansible-playbook "$CI_PROJECT_DIR/jump.apexaltruism.net/prepbook.yml" --extra-vars "@variable.json"
+    - echo "Deploy the stated service on the specified inventory location"
+    - docker --host "$location_centvirt_slvd" compose --file "$CI_PROJECT_DIR/jump.apexaltruism.net/compconf.yml" up --detach
+  only:
+    changes:
+      - "jump.apexaltruism.net/compconf.template.j2"
+      - "jump.apexaltruism.net/prepbook.yml"
