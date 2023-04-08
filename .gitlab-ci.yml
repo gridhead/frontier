@@ -40,8 +40,8 @@ jump.apexaltruism.net:
   environment: "jump.apexaltruism.net"
   script:
     - echo "Implement the compose configuration file using the stored variable file"
-    - pwd && ls -lha $CI_PROJECT_DIR
-    - cd "$CI_PROJECT_DIR/jump.apexaltruism.net/" && ansible-playbook "prepbook.yml" --extra-vars "@$jump_variable"
+    - cat $jump_variable > $CI_PROJECT_DIR/jump.apexaltruism.net/variable.json
+    - ansible-playbook "$CI_PROJECT_DIR/jump.apexaltruism.net/prepbook.yml" --extra-vars "$CI_PROJECT_DIR/jump.apexaltruism.net/@variable.json"
     - echo "Deploy the stated service on the specified inventory location"
     - docker --host "$location_centvirt_slvd" compose --file "$CI_PROJECT_DIR/jump.apexaltruism.net/compconf.yml" up --detach
   only:
