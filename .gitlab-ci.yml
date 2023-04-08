@@ -45,7 +45,7 @@ jump.apexaltruism.net:
     - cat "$jump_variable" > "$CI_PROJECT_DIR/jump.apexaltruism.net/variable.json"
     - ansible-playbook "$CI_PROJECT_DIR/jump.apexaltruism.net/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/jump.apexaltruism.net/variable.json"
     - echo "Deploy the stated service on the specified inventory location"
-    - ssh -p 2214 centvirt-slvd@centvirt-slvd.apexaltruism.net
+    - ssh-keygen -R "$hostname_centvirt_slvd"
     - docker --host "$location_centvirt_slvd" compose --file "$CI_PROJECT_DIR/jump.apexaltruism.net/compconf.yml" up --detach
   only:
     changes:
