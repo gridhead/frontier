@@ -17,6 +17,9 @@
 # Reference for CI pipeline file was taken from the following location
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Bash.gitlab-ci.yml
 
+# Pre-defined variables reference can be found in the following location
+# https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
+
 image: fedora:latest
 
 before_script:
