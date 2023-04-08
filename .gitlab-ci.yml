@@ -28,9 +28,11 @@ before_script:
   - cat $privcode_trsa > /root/.ssh/id_rsa
   - cat $publcode_trsa > /root/.ssh/id_rsa.pub
   - cat $sshdconf > /root/.ssh/config
-  - echo "Install Ansible package required for setting up the configuration files"
+  - echo "Install 'Ansible' package required for setting up the configuration files"
   - dnf install ansible --setopt=install_weak_deps=False --assumeyes
-  - echo "Install Docker CE package required for deploying the stated service"
+  - echo "Install 'OpenSSH Clients' package required for setting up the configuration files"
+  - dnf install openssh-clients --setopt=install_weak_deps=False --assumeyes
+  - echo "Install 'Docker CE' package required for deploying the stated service"
   - dnf install dnf-plugins-core --setopt=install_weak_deps=False --assumeyes
   - dnf config-manager --add-repo "https://download.docker.com/linux/fedora/docker-ce.repo"
   - dnf install docker-ce docker-compose-plugin --setopt=install_weak_deps=False --assumeyes
