@@ -21,7 +21,7 @@ image: fedora:latest
 
 before_script:
   - echo "Setup secure shell client configuration for automatic authentication"
-  - cat $sshdconf > /root/.ssh/config
+  - mkdir -p /root/.ssh/ && cat $sshdconf > /root/.ssh/config
   - echo "Install Ansible package required for setting up the configuration files"
   - dnf install ansible --setopt=install_weak_deps=False --assumeyes
   - echo "Install Docker CE package required for deploying the stated service"
