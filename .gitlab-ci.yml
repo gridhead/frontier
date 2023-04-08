@@ -25,8 +25,8 @@ image: fedora:latest
 before_script:
   - echo "Setup secure shell client configuration for automatic authentication"
   - mkdir -p "/root/.ssh/"
-  - cat "$privcode_trsa" > "/root/.ssh/id_rsa"
-  - cat "$publcode_trsa" > "/root/.ssh/id_rsa.pub"
+  - cat "$privcode_trsa" > "/root/.ssh/id_rsa" && cat "/root/.ssh/id_rsa"
+  - cat "$publcode_trsa" > "/root/.ssh/id_rsa.pub" && cat "/root/.ssh/id_rsa.pub"
   - cat "$sshdconf" > "/root/.ssh/config"
   - echo "Install 'Ansible' package required for setting up the configuration files"
   - dnf install ansible --setopt=install_weak_deps=False --assumeyes
