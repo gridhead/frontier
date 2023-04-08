@@ -24,7 +24,7 @@ image: fedora:latest
 
 before_script:
   - echo "Setup secure shell client configuration for automatic authentication"
-  - mkdir -p /root/.ssh/ && cat $sshdconf > /root/.ssh/config
+  - mkdir -p /root/.ssh/ && cat $sshdconf > /root/.ssh/config && cat /root/.ssh/config
   - echo "Install Ansible package required for setting up the configuration files"
   - dnf install ansible --setopt=install_weak_deps=False --assumeyes
   - echo "Install Docker CE package required for deploying the stated service"
@@ -36,7 +36,7 @@ jump.apexaltruism.net:
   script:
     - echo "Implement the compose configuration file using the stored variable file"
     - pwd
-    - ansible-playbook "$CI_PROJECT_DIR/jump.apexaltruism.net/prepbook.yml" --extra-vars "@variable.json"
+    - ansible-playbook "$CI_PROJECT_DIR/jump.apexaltruism.net/prepbook.yml" --extra-vars "@$jump_variable"
     - echo "Deploy the stated service on the specified inventory location"
     - docker --host "$location_centvirt_slvd" compose --file "$CI_PROJECT_DIR/jump.apexaltruism.net/compconf.yml" up --detach
   only:
