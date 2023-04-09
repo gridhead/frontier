@@ -68,7 +68,7 @@ cease_jump.apexaltruism.net:
     - cat "$variable_jump" > "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - ansible-playbook "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - echo "Deploy the stated service on the specified inventory location"
-    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/compconf.yml" down --detach
+    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/compconf.yml" down
   only:
     changes:
       - "jump.apexaltruism.net/compconf.template.j2"
@@ -102,7 +102,7 @@ cease_download.apexaltruism.net:
     - cat "$variable_download" > "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - ansible-playbook "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - echo "Deploy the stated service on the specified inventory location"
-    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/compconf.yml" down --detach
+    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/compconf.yml" down
   only:
     changes:
       - "download.apexaltruism.net/compconf.template.j2"
