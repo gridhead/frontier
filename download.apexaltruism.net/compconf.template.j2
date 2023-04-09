@@ -1,0 +1,29 @@
+---
+version: "3.3"
+services:
+  {{ servname }}:
+    image: "linuxserver/deluge:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname }}"
+    hostname: "{{ hostname }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo }}"
+          memory: "{{ maxramgo }}"
+        reservations:
+          cpus: "{{ mincpugo }}"
+          memory: "{{ minramgo }}"
+    environment:
+      - "PUID={{ userpuid }}"
+      - "PGID={{ userpgid }}"
+      - "TZ={{ timezone }}"
+      - "DELUGE_LOGLEVEL={{ loglevel }}"
+    ports:
+      - "{{ portdist_slva }}"
+      - "{{ portdist_slvb }}"
+      - "{{ portdist_slvc }}"
+    volumes:
+      - "{{ confvolm }}:/config"
+      - "{{ filevolm }}:/downloads"
+    restart: "{{ gopolicy }}"
