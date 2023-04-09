@@ -26,10 +26,6 @@
 
 image: fedora:latest
 
-variables:
-   hostname_jump: "jump.apexaltruism.net"
-   hostname_download: "download.apexaltruism.net"
-
 before_script:
   - echo "Setup secure shell client configuration for automatic authentication"
   - mkdir -p "/root/.ssh/" && chmod 700 "/root/.ssh/"
@@ -47,28 +43,32 @@ before_script:
 
 jump.apexaltruism.net:
   stage: "deploy"
-  environment: "$hostname_jump"
+  environment: "jump.apexaltruism.net"
+  variables:
+    hostname: "$CI_ENVIRONMENT_NAME"
   script:
     - echo "Implement the compose configuration file using the stored variable file"
-    - cat "$variable_jump" > "$CI_PROJECT_DIR/$hostname_jump/variable.json"
-    - ansible-playbook "$CI_PROJECT_DIR/$hostname_jump/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$hostname_jump/variable.json"
+    - cat "$variable_jump" > "$CI_PROJECT_DIR/$hostname/variable.json"
+    - ansible-playbook "$CI_PROJECT_DIR/$hostname/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$hostname/variable.json"
     - echo "Deploy the stated service on the specified inventory location"
-    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$hostname_jump/compconf.yml" up --detach
+    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$hostname/compconf.yml" up --detach
   only:
     changes:
-      - "$hostname_jump/compconf.template.j2"
-      - "$hostname_jump/prepbook.yml"
+      - "$hostname/compconf.template.j2"
+      - "$hostname/prepbook.yml"
 
 download.apexaltruism.net:
   stage: "deploy"
-  environment: "$hostname_download"
+  environment: "download.apexaltruism.net"
+  variables:
+    hostname: "$CI_ENVIRONMENT_NAME"
   script:
     - echo "Implement the compose configuration file using the stored variable file"
-    - cat "$variable_download" > "$CI_PROJECT_DIR/$hostname_download/variable.json"
-    - ansible-playbook "$CI_PROJECT_DIR/$hostname_download/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$hostname_download/variable.json"
+    - cat "$variable_download" > "$CI_PROJECT_DIR/$hostname/variable.json"
+    - ansible-playbook "$CI_PROJECT_DIR/$hostname/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$hostname/variable.json"
     - echo "Deploy the stated service on the specified inventory location"
-    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$hostname_download/compconf.yml" up --detach
+    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$hostname/compconf.yml" up --detach
   only:
     changes:
-      - "$hostname_download/compconf.template.j2"
-      - "$hostname_download/prepbook.yml"
+      - "$hostname/compconf.template.j2"
+      - "$hostname/prepbook.yml"
