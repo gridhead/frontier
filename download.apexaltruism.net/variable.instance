@@ -1,0 +1,20 @@
+{
+    "servname": "STOW_DATA_HERE",
+    "ntwkconn": "STOW_DATA_HERE",
+    "hostname": "STOW_DATA_HERE",
+    "maxcpugo": "STOW_DATA_HERE",
+    "maxramgo": "STOW_DATA_HERE",
+    "mincpugo": "STOW_DATA_HERE",
+    "minramgo": "STOW_DATA_HERE",
+    "userpuid": "STOW_DATA_HERE",
+    "userpgid": "STOW_DATA_HERE",
+    "timezone": "STOW_DATA_HERE",
+    "loglevel": "STOW_DATA_HERE",
+    "password": "STOW_DATA_HERE",
+    "portdist_slva": "STOW_DATA_HERE",
+    "portdist_slvb": "STOW_DATA_HERE",
+    "portdist_slvc": "STOW_DATA_HERE",
+    "confvolm": "STOW_DATA_HERE",
+    "filevolm": "STOW_DATA_HERE",
+    "gopolicy": "STOW_DATA_HERE"
+}
