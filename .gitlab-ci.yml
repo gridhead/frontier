@@ -47,12 +47,11 @@ jump.apexaltruism.net:
   variables:
     hostname: "$CI_ENVIRONMENT_NAME"
   script:
-    - cat "$hostname" "$CI_ENVIRONMENT_NAME" && ls -lha "$hostname"
     - echo "Implement the compose configuration file using the stored variable file"
-    - cat "$variable_jump" > "$CI_PROJECT_DIR/$hostname/variable.json"
-    - ansible-playbook "$CI_PROJECT_DIR/$hostname/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$hostname/variable.json"
+    - cat "$variable_jump" > "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
+    - ansible-playbook "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - echo "Deploy the stated service on the specified inventory location"
-    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$hostname/compconf.yml" up --detach
+    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/compconf.yml" up --detach
   only:
     changes:
       - "jump.apexaltruism.net/compconf.template.j2"
@@ -64,12 +63,11 @@ download.apexaltruism.net:
   variables:
     hostname: "$CI_ENVIRONMENT_NAME"
   script:
-    - cat "$hostname" "$CI_ENVIRONMENT_NAME" && ls -lha "$hostname"
     - echo "Implement the compose configuration file using the stored variable file"
-    - cat "$variable_download" > "$CI_PROJECT_DIR/$hostname/variable.json"
-    - ansible-playbook "$CI_PROJECT_DIR/$hostname/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$hostname/variable.json"
+    - cat "$variable_download" > "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
+    - ansible-playbook "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - echo "Deploy the stated service on the specified inventory location"
-    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$hostname/compconf.yml" up --detach
+    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/compconf.yml" up --detach
   only:
     changes:
       - "download.apexaltruism.net/compconf.template.j2"
