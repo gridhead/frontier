@@ -50,7 +50,7 @@ jump.apexaltruism.net:
     - cat "$jump_variable" > "$CI_PROJECT_DIR/jump.apexaltruism.net/variable.json"
     - ansible-playbook "$CI_PROJECT_DIR/jump.apexaltruism.net/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/jump.apexaltruism.net/variable.json"
     - echo "Deploy the stated service on the specified inventory location"
-    - docker --host "$location_centvirt_slvd" compose --file "$CI_PROJECT_DIR/jump.apexaltruism.net/compconf.yml" up --detach
+    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/jump.apexaltruism.net/compconf.yml" up --detach
   only:
     changes:
       - "jump.apexaltruism.net/compconf.template.j2"
