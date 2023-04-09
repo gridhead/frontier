@@ -20,23 +20,26 @@
 # Pre-defined variables reference can be found in the following location
 # https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
 
+# The initial stage requires setting proper permissions for the keyfiles
+# This is to ensure that the "Host key verification failed" error is avoided
+# This error happens due to the "UNPROTECTED PRIVATE KEY FILE" error
+
 image: fedora:latest
 
 before_script:
   - echo "Setup secure shell client configuration for automatic authentication"
-  - mkdir -p "/root/.ssh/"
-  - cat "$privcode_trsa" > "/root/.ssh/id_rsa"
-  - cat "$publcode_trsa" > "/root/.ssh/id_rsa.pub"
+  - mkdir -p "/root/.ssh/" && chmod 700 "/root/.ssh/"
+  - cat "$privcode_trsa" > "/root/.ssh/id_rsa" && chmod 600 "/root/.ssh/id_rsa"
+  - cat "$publcode_trsa" > "/root/.ssh/id_rsa.pub" && chmod 644 "/root/ssh/id_rsa.pub"
   - cat "$sshdconf" > "/root/.ssh/config"
-  - ls -lha "/root/.ssh/"
   - echo "Install 'Ansible' package required for setting up the configuration files"
-  - dnf install ansible --setopt=install_weak_deps=False --assumeyes
+  - dnf install "ansible" --setopt=install_weak_deps=False --assumeyes
   - echo "Install 'OpenSSH Clients' package required for setting up the configuration files"
-  - dnf install openssh-clients --setopt=install_weak_deps=False --assumeyes
+  - dnf install "openssh-clients" --setopt=install_weak_deps=False --assumeyes
   - echo "Install 'Docker CE' package required for deploying the stated service"
-  - dnf install dnf-plugins-core --setopt=install_weak_deps=False --assumeyes
+  - dnf install "dnf-plugins-core" --setopt=install_weak_deps=False --assumeyes
   - dnf config-manager --add-repo "https://download.docker.com/linux/fedora/docker-ce.repo"
-  - dnf install docker-ce docker-compose-plugin --setopt=install_weak_deps=False --assumeyes
+  - dnf install "docker-ce" "docker-compose-plugin" --setopt=install_weak_deps=False --assumeyes
 
 jump.apexaltruism.net:
   stage: "deploy"
