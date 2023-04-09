@@ -30,8 +30,9 @@ before_script:
   - echo "Setup secure shell client configuration for automatic authentication"
   - mkdir -p "/root/.ssh/" && chmod 700 "/root/.ssh/"
   - cat "$privcode_trsa" > "/root/.ssh/id_rsa" && chmod 600 "/root/.ssh/id_rsa"
-  - cat "$publcode_trsa" > "/root/.ssh/id_rsa.pub" && chmod 644 "/root/ssh/id_rsa.pub"
-  - cat "$sshdconf" > "/root/.ssh/config"
+  - cat "$publcode_trsa" > "/root/.ssh/id_rsa.pub" && chmod 644 "/root/.ssh/id_rsa.pub"
+  - cat "$sshdconf" > "/root/.ssh/config" && chmod 644 "/root/.ssh/config"
+  - echo "Set proper permissions for the keyfiles to have them protected"
   - echo "Install 'Ansible' package required for setting up the configuration files"
   - dnf install "ansible" --setopt=install_weak_deps=False --assumeyes
   - echo "Install 'OpenSSH Clients' package required for setting up the configuration files"
