@@ -47,6 +47,7 @@ jump.apexaltruism.net:
   variables:
     hostname: "$CI_ENVIRONMENT_NAME"
   script:
+    - cat "$hostname" "$CI_ENVIRONMENT_NAME" && ls -lha "$hostname"
     - echo "Implement the compose configuration file using the stored variable file"
     - cat "$variable_jump" > "$CI_PROJECT_DIR/$hostname/variable.json"
     - ansible-playbook "$CI_PROJECT_DIR/$hostname/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$hostname/variable.json"
@@ -54,8 +55,8 @@ jump.apexaltruism.net:
     - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$hostname/compconf.yml" up --detach
   only:
     changes:
-      - "$hostname/compconf.template.j2"
-      - "$hostname/prepbook.yml"
+      - "jump.apexaltruism.net/compconf.template.j2"
+      - "jump.apexaltruism.net/prepbook.yml"
 
 download.apexaltruism.net:
   stage: "deploy"
@@ -63,6 +64,7 @@ download.apexaltruism.net:
   variables:
     hostname: "$CI_ENVIRONMENT_NAME"
   script:
+    - cat "$hostname" "$CI_ENVIRONMENT_NAME" && ls -lha "$hostname"
     - echo "Implement the compose configuration file using the stored variable file"
     - cat "$variable_download" > "$CI_PROJECT_DIR/$hostname/variable.json"
     - ansible-playbook "$CI_PROJECT_DIR/$hostname/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$hostname/variable.json"
@@ -70,5 +72,5 @@ download.apexaltruism.net:
     - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$hostname/compconf.yml" up --detach
   only:
     changes:
-      - "$hostname/compconf.template.j2"
-      - "$hostname/prepbook.yml"
+      - "download.apexaltruism.net/compconf.template.j2"
+      - "download.apexaltruism.net/prepbook.yml"
