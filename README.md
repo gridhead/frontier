@@ -4,9 +4,9 @@ Configuring automated deployment of infrastructure services using Docker Compose
 
 ## Network Diagram A - Internal Connections
 
-![](https://gitlab.com/t0xic0der/frontier/-/raw/main/data/NetworkDiagramA.svg)
+![](https://gitlab.com/t0xic0der/frontier/-/raw/main/data/NetworkDiagramA.png)
 
 ## Network Diagram B - External Connections
 
-![](https://gitlab.com/t0xic0der/frontier/-/raw/main/data/NetworkDiagramB.svg)
+![](https://gitlab.com/t0xic0der/frontier/-/raw/main/data/NetworkDiagramB.png)
 
