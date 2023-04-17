@@ -6,6 +6,8 @@ include:
   - local: "jump.apexaltruism.net/function/cease.yml"
   - local: "download.apexaltruism.net/function/serve.yml"
   - local: "download.apexaltruism.net/function/cease.yml"
+  - local: "vscode-mstr.apexaltruism.net/function/serve.yml"
+  - local: "vscode-mstr.apexaltruism.net/function/cease.yml"
 
 # The initial stage requires setting proper permissions for the keyfiles
 # This is to ensure that the "Host key verification failed" error is avoided
