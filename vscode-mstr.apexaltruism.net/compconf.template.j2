@@ -1,0 +1,28 @@
+---
+version: "3.3"
+services:
+  {{ servname }}:
+    image: "linuxserver/code-server:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname }}"
+    hostname: "{{ hostname }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo }}"
+          memory: "{{ maxramgo }}"
+        reservations:
+          cpus: "{{ mincpugo }}"
+          memory: "{{ minramgo }}"
+    environment:
+      - "PUID={{ userpuid }}"
+      - "PGID={{ userpgid }}"
+      - "TZ={{ timezone }}"
+      - "PASSWORD={{ password }}"
+      - "SUDO_PASSWORD={{ sudopass }}"
+    ports:
+      - "{{ portdist_slva }}"
+    volumes:
+      - "{{ confvolm }}:/config"
+      - "{{ filevolm }}:/data"
+    restart: "{{ gopolicy }}"
