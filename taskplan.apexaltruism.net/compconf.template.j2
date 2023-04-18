@@ -1,0 +1,74 @@
+---
+
+# Reference taken from https://thehomelab.wiki/books/docker/page/setup-vikunja-using-docker-compose and https://vikunja.io/docs/install-backend/#docker
+
+version: "3.3"
+services:
+  {{ servname_data }}:
+    image: "mariadb:10"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_data }}"
+    hostname: "{{ hostname_data }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_data }}"
+          memory: "{{ maxramgo_data }}"
+        reservations:
+          cpus: "{{ mincpugo_data }}"
+          memory: "{{ minramgo_data }}"
+    environment:
+      - "MYSQL_ROOT_PASSWORD={{ vkdbrtps }}"
+      - "MYSQL_DATABASE={{ vkdbname }}"
+      - "MYSQL_USER={{ vkdbuser }}"
+      - "MYSQL_PASSWORD={{ vkdbpass }}"
+    volumes:
+      - "{{ dataloca }}:/var/lib/mysql"
+    command: "--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
+    restart: "{{ gopolicy_data }}"
+
+  {{ servname_aplc }}:
+    image: "vikunja/api:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_aplc }}"
+    hostname: "{{ hostname_aplc }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_aplc }}"
+          memory: "{{ maxramgo_aplc }}"
+        reservations:
+          cpus: "{{ mincpugo_aplc }}"
+          memory: "{{ minramgo_aplc }}"
+    environment:
+      - "VIKUNJA_DATABASE_HOST={{ servname_data }}"
+      - "VIKUNJA_DATABASE_PASSWORD={{ vkdbpass }}"
+      - "VIKUNJA_DATABASE_TYPE=mysql"
+      - "VIKUNJA_DATABASE_USER={{ vkdbuser }}"
+      - "VIKUNJA_DATABASE_DATABASE={{ vkdbname }}"
+      - "VIKUNJA_SERVICE_JWTSECRET={{ encrcode }}"
+      - "VIKUNJA_SERVICE_FRONTENDURL={{ frntlink }}"
+    volumes:
+      - "{{ filelist }}:/app/vikunja/files"
+    ports:
+      - "{{ portdist_aplc }}"
+    depends_on:
+      - "{{ servname_data }}"
+    restart: "{{ gopolicy_aplc }}"
+
+  {{ servname_frnt }}:
+    image: "vikunja/frontend:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_frnt }}"
+    hostname: "{{ hostname_frnt }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_frnt }}"
+          memory: "{{ maxramgo_frnt }}"
+        reservations:
+          cpus: "{{ mincpugo_frnt }}"
+          memory: "{{ minramgo_frnt }}"
+    ports:
+      - "{{ portdist_frnt }}"
+    restart: "{{ gopolicy_frnt }}"
