@@ -2,10 +2,12 @@
 # https://docs.gitlab.com/ee/ci/yaml/#include
 
 include:
-  - local: "jump.apexaltruism.net/function/serve.yml"
-  - local: "jump.apexaltruism.net/function/cease.yml"
   - local: "download.apexaltruism.net/function/serve.yml"
   - local: "download.apexaltruism.net/function/cease.yml"
+  - local: "jump.apexaltruism.net/function/serve.yml"
+  - local: "jump.apexaltruism.net/function/cease.yml"
+  - local: "leantime.apexaltruism.net/function/serve.yml"
+  - local: "leantime.apexaltruism.net/function/cease.yml"
   - local: "vscode-mstr.apexaltruism.net/function/serve.yml"
   - local: "vscode-mstr.apexaltruism.net/function/cease.yml"
 
