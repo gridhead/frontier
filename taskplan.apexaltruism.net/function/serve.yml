@@ -7,6 +7,10 @@ serve_taskplan.apexaltruism.net:
     - echo "Implement the compose configuration file using the stored variable file"
     - cat "$variable_taskplan" > "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - ansible-playbook "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
+    - echo "Install 'rsync' package to help transfer the reverse proxy configuration"
+    - dnf install "rsync" --setopt=install_weak_deps=False --assumeyes
+    - echo "Transfer the reverse proxy configuration over to the remote machine"
+    - ansible-playbook "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/miscdata/playbook.serve.yml" --inventory-file "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/miscdata/register.ini" --private-key "/root/.ssh/id_rsa"
     - echo "Deploy the stated service on the specified inventory location"
     - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/compconf.yml" up --detach
   rules:
