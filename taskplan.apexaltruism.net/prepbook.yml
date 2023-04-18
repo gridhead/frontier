@@ -5,15 +5,3 @@
       template:
         src: "compconf.template.j2"
         dest: "compconf.yml"
-    - name: "Setting the variables in the reverse proxy configuration template"
-      template:
-        src: "miscdata/loadconf.template.j2"
-        dest: "miscdata/loadconf"
-    - name: "Setting the variables in the machine inventory template"
-      template:
-        src: "miscdata/register.template.j2"
-        dest: "miscdata/register.ini"
-    - name: "Setting the variables in the playbook template"
-      template:
-        src: "miscdata/playbook.serve.template.j2"
-        dest: "miscdata/playbook.serve.yml"

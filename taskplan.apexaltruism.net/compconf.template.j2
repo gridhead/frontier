@@ -52,6 +52,8 @@ services:
       - "{{ filelist }}:/app/vikunja/files"
     depends_on:
       - "{{ servname_data }}"
+    ports:
+      - "{{ portdist_aplc }}"
     restart: "{{ gopolicy_aplc }}"
 
   {{ servname_frnt }}:
@@ -67,25 +69,6 @@ services:
         reservations:
           cpus: "{{ mincpugo_frnt }}"
           memory: "{{ minramgo_frnt }}"
-    restart: "{{ gopolicy_frnt }}"
-
-  {{ servname_load }}:
-    image: "nginx:latest"
-    network_mode: "{{ ntwkconn }}"
-    container_name: "{{ servname_load }}"
-    hostname: "{{ hostname_load }}"
-    deploy:
-      resources:
-        limits:
-          cpus: "{{ maxcpugo_load }}"
-          memory: "{{ maxramgo_load }}"
-        reservations:
-          cpus: "{{ mincpugo_load }}"
-          memory: "{{ minramgo_load }}"
-    volumes:
-      - "{{ loadconf }}:/etc/nginx/conf.d/default.conf:ro"
-    depends_on:
-      - "{{ servname_aplc }}"
-      - "{{ servname_frnt }}"
     ports:
-      - "{{ portdist }}"
+      - "{{ portdist_frnt }}"
+    restart: "{{ gopolicy_frnt }}"
