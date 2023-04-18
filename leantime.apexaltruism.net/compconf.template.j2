@@ -1,0 +1,56 @@
+---
+version: "3.3"
+services:
+  {{ servname_data }}:
+    image: "mysql:8.0"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_data }}"
+    hostname: "{{ hostname_data }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_data }}"
+          memory: "{{ maxramgo_data }}"
+        reservations:
+          cpus: "{{ mincpugo_data }}"
+          memory: "{{ minramgo_data }}"
+    environment:
+      - "MYSQL_ROOT_PASSWORD={{ lndbpass }}"
+      - "MYSQL_DATABASE={{ lndbname }}"
+      - "MYSQL_USER={{ lndbuser }}"
+      - "MYSQL_PASSWORD={{ lndbpass }}"
+    volumes:
+      - "{{ dataloca }}:/var/lib/mysql"
+    command: "--character-set-server=utf8 --collation-server=utf8_unicode_ci"
+    restart: "{{ gopolicy_data }}"
+
+  {{ servname_aplc }}:
+    image: "leantime/leantime:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_aplc }}"
+    hostname: "{{ hostname_aplc }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_aplc }}"
+          memory: "{{ maxramgo_aplc }}"
+        reservations:
+          cpus: "{{ mincpugo_aplc }}"
+          memory: "{{ minramgo_aplc }}"
+    environment:
+      - "LEAN_SITENAME={{ lnstname }}"
+      - "LEAN_DB_HOST={{ servname_data }}"
+      - "LEAN_DB_USER={{ lndbuser }}"
+      - "LEAN_DB_PASSWORD={{ lndbpass }}"
+      - "LEAN_DB_DATABASE={{ lndbname }}"
+      - "LEAN_DEFAULT_TIMEZONE={{ timezone }}"
+      - "LEAN_SESSION_PASSWORD={{ sesspass }}"
+      - "LEAN_SESSION_EXPIRATION={{ sessexpr }}"
+    volumes:
+      - "{{ pubfiles }}:/var/www/html/public/userfiles"
+      - "{{ pvtfiles }}:/var/www/html/userfiles"
+    ports:
+      - "{{ portdist }}"
+    depends_on:
+      - "{{ servname_data }}"
+    restart: "{{ gopolicy_aplc }}"
