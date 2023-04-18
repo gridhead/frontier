@@ -1,0 +1,19 @@
+- name: "Insert the reverse proxy configuration in the specified location"
+  hosts: destmach
+  remote_user: {{ destmach_user }}
+  become: "yes"
+  become_method: "sudo"
+  tasks:
+    - name: "Install 'rsync' package on the remote machine"
+      dnf:
+        name: "rsync"
+        state: "latest"
+    - name: "Insert the reverse proxy configuration in the specified location"
+      synchronize:
+        src: "loadconf"
+        dest: "{{ loadconf }}"
+      delegate_to: "localhost"
+    - name: "Remove 'rsync' package on the remote machine"
+      dnf:
+        name: "rsync"
+        state: "absent"
