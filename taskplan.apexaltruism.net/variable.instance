@@ -8,6 +8,7 @@
     "encrcode": "STOW DATA HERE",
     "frntlink": "STOW DATA HERE",
     "filelist": "STOW DATA HERE",
+    "portdist": "8000:80/tcp",
     "servname_data": "STOW DATA HERE",
     "hostname_data": "STOW DATA HERE",
     "maxcpugo_data": "STOW DATA HERE",
@@ -22,7 +23,6 @@
     "mincpugo_aplc": "STOW DATA HERE",
     "minramgo_aplc": "STOW DATA HERE",
     "gopolicy_aplc": "STOW DATA HERE",
-    "portdist_aplc": "STOW DATA HERE",
     "servname_frnt": "STOW DATA HERE",
     "hostname_frnt": "STOW DATA HERE",
     "maxcpugo_frnt": "STOW DATA HERE",
@@ -30,5 +30,11 @@
     "mincpugo_frnt": "STOW DATA HERE",
     "minramgo_frnt": "STOW DATA HERE",
     "gopolicy_frnt": "STOW DATA HERE",
-    "portdist_frnt": "STOW DATA HERE"
+    "servname_load": "STOW DATA HERE",
+    "hostname_load": "STOW DATA HERE",
+    "maxcpugo_load": "STOW DATA HERE",
+    "maxramgo_load": "STOW DATA HERE",
+    "mincpugo_load": "STOW DATA HERE",
+    "minramgo_load": "STOW DATA HERE",
+    "gopolicy_load": "STOW DATA HERE"
 }
