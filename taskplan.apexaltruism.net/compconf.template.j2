@@ -69,7 +69,7 @@ services:
           memory: "{{ minramgo_frnt }}"
     restart: "{{ gopolicy_frnt }}"
 
-  {{ servename_load }}:
+  {{ servname_load }}:
     image: "nginx:latest"
     network_mode: "{{ ntwkconn }}"
     container_name: "{{ servname_load }}"
