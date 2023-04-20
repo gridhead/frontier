@@ -1,6 +1,6 @@
 ---
 
-# Reference taken from https://thehomelab.wiki/books/docker/page/setup-vikunja-using-docker-compose and https://vikunja.io/docs/install-backend/#docker
+# Reference taken from https://thehomelab.wiki/books/docker/page/setup-vikunja-using-docker-compose and https://vikunja.io/docs/full-docker-example/#example-without-any-proxy
 
 version: "3.3"
 services:
@@ -69,6 +69,8 @@ services:
         reservations:
           cpus: "{{ mincpugo_frnt }}"
           memory: "{{ minramgo_frnt }}"
+    environment:
+      - "VIKUNJA_API_URL={{ taskapiu }}"
     ports:
       - "{{ portdist_frnt }}"
     restart: "{{ gopolicy_frnt }}"
