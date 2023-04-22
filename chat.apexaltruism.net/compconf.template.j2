@@ -1,0 +1,25 @@
+---
+version: "3.3"
+services:
+  {{ servname }}:
+    image: "linuxserver/thelounge:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname }}"
+    hostname: "{{ hostname }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo }}"
+          memory: "{{ maxramgo }}"
+        reservations:
+          cpus: "{{ mincpugo }}"
+          memory: "{{ minramgo }}"
+    environment:
+      - "PUID={{ userpuid }}"
+      - "PGID={{ userpgid }}"
+      - "TZ={{ timezone }}"
+    ports:
+      - "{{ portdist }}"
+    volumes:
+      - "{{ volmsrce }}:/config"
+    restart: "{{ gopolicy }}"
