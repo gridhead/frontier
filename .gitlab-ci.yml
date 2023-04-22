@@ -20,7 +20,7 @@ include:
 # This error happens due to the "UNPROTECTED PRIVATE KEY FILE" error
 
 default:
-  image: "fedora:latest"
+  image: "fedora:37"
   before_script:
     - echo "Setup secure shell client configuration for automatic authentication"
     - mkdir -p "/root/.ssh/" && chmod 700 "/root/.ssh/"
