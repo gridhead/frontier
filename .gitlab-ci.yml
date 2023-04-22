@@ -2,6 +2,8 @@
 # https://docs.gitlab.com/ee/ci/yaml/#include
 
 include:
+  - local: "chat.apexaltruism.net/function/serve.yml"
+  - local: "chat.apexaltruism.net/function/cease.yml"
   - local: "download.apexaltruism.net/function/serve.yml"
   - local: "download.apexaltruism.net/function/cease.yml"
   - local: "jump.apexaltruism.net/function/serve.yml"
