@@ -1,0 +1,23 @@
+---
+version: "3.3"
+services:
+  {{ servname }}:
+    image: "portainer/portainer-ce:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname }}"
+    hostname: "{{ hostname }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo }}"
+          memory: "{{ maxramgo }}"
+        reservations:
+          cpus: "{{ mincpugo }}"
+          memory: "{{ minramgo }}"
+    ports:
+      - "{{ portdist_slva }}"
+      - "{{ portdist_slvb }}"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "{{ volmsrce }}:/app/data"
+    restart: "{{ gopolicy }}"
