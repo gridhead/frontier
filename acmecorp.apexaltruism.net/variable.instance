@@ -6,7 +6,6 @@
     "maxramgo": "STOW_DATA_HERE",
     "mincpugo": "STOW_DATA_HERE",
     "minramgo": "STOW_DATA_HERE",
-    "timezone": "STOW_DATA_HERE",
     "portdist_atcp": "STOW_DATA_HERE",
     "portdist_audp": "STOW_DATA_HERE",
     "confvolm": "STOW_DATA_HERE",

@@ -2,7 +2,7 @@
 version: "3.3"
 services:
   {{ servname }}:
-    image: "ubuntu/bind9:latest"
+    image: "internetsystemsconsortium/bind9:latest"
     network_mode: "{{ ntwkconn }}"
     container_name: "{{ servname }}"
     hostname: "{{ hostname }}"
@@ -14,8 +14,6 @@ services:
         reservations:
           cpus: "{{ mincpugo }}"
           memory: "{{ minramgo }}"
-    environment:
-      - "TZ={{ timezone }}"
     ports:
       - "{{ portdist_atcp }}"
       - "{{ portdist_audp }}"
