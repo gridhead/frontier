@@ -2,7 +2,7 @@
 version: "3.3"
 services:
   {{ servname }}:
-    image: "internetsystemsconsortium/bind9:latest"
+    image: "internetsystemsconsortium/bind9:9.18"
     network_mode: "{{ ntwkconn }}"
     container_name: "{{ servname }}"
     hostname: "{{ hostname }}"
