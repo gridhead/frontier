@@ -2,7 +2,7 @@
 version: "3.3"
 services:
   {{ servname }}:
-    image: "internetsystemsconsortium/bind9:9.18"
+    image: "ubuntu/bind9:latest"
     network_mode: "{{ ntwkconn }}"
     container_name: "{{ servname }}"
     hostname: "{{ hostname }}"
@@ -14,11 +14,13 @@ services:
         reservations:
           cpus: "{{ mincpugo }}"
           memory: "{{ minramgo }}"
+    environment:
+      - "BIND9_USER={{ binduser }}"
     ports:
       - "{{ portdist_atcp }}"
       - "{{ portdist_audp }}"
     volumes:
-      - "{{ confvolm }}:/etc/bind"
+      - "{{ confvolm }}:/etc/bind/named.conf"
       - "{{ datavolm }}:/var/cache/bind"
       - "{{ rcrdvolm }}:/var/lib/bind"
     restart: "{{ gopolicy }}"
