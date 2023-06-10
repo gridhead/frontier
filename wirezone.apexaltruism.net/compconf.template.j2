@@ -1,4 +1,20 @@
 ---
+
+# HOW TO SOLVE THE FOLLOWING ISSUE?
+# iptables v1.8.8 (legacy): can't initialize iptables table `filter': Table does not exist (do you need to insmod?)
+# Perhaps iptables or your kernel needs to be upgraded.
+# [#] ip link delete dev wg0
+# s6-rc: warning: unable to start service svc-wireguard: command exited 3
+
+# ANSWER
+# https://stackoverflow.com/questions/58726984/docker-errno-2-ip6tables-v1-6-1-cant-initialize-ip6tables-table-filter-ta
+# https://ilhicas.com/2018/04/08/Fixing-do-you-need-insmod.html
+# https://askubuntu.com/a/28218
+
+# COMMANDS
+# sudo modprobe iptable_filter
+# sudo modprobe ip6table_filter
+
 version: "3.7"
 services:
   "{{ servname }}":
