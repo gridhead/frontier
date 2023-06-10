@@ -1,0 +1,37 @@
+---
+version: "3.7"
+services:
+  "{{ servname }}":
+    image: "linuxserver/wireguard:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname }}"
+    hostname: "{{ hostname }}"
+    cap_add:
+      - "NET_ADD"
+      - "SYS_MODULE"
+    sysctls:
+      - "net.ipv4.conf.all.src_valid_mark=1"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo }}"
+          memory: "{{ maxramgo }}"
+        reservations:
+          cpus: "{{ mincpugo }}"
+          memory: "{{ minramgo }}"
+    environment:
+      - "PUID={{ userpuid }}"
+      - "PGID={{ userpgid }}"
+      - "TZ={{ timezone }}"
+      - "SERVERPORT={{ servport }}"
+      - "PEERDNS={{ pdnsconf }}"
+      - "ALLOWEDIPS={{ allowips }}"
+      - "INTERNAL_SUBNET={{ insubnet }}"
+      - "SERVERURL={{ serveurl }}"
+    ports:
+      - "{{ portdist }}"
+    volumes:
+      - "{{ confdrct }}:/config"
+      - "{{ kernhead }}:/usr/src"
+      - "{{ modedrct }}:/lib/modules"
+    restart: "{{ gopolicy }}"
