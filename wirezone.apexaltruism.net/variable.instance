@@ -9,6 +9,7 @@
     "userpuid": "STOW_DATA_HERE",
     "userpgid": "STOW_DATA_HERE",
     "timezone": "STOW_DATA_HERE",
+    "peerconf": "STOW_DATA_HERE",
     "servport": "STOW_DATA_HERE",
     "pdnsconf": "STOW_DATA_HERE",
     "allowips": "STOW_DATA_HERE",
