@@ -10,6 +10,8 @@ include:
   - local: "dash.apexaltruism.net/function/cease.yml"
   - local: "download.apexaltruism.net/function/serve.yml"
   - local: "download.apexaltruism.net/function/cease.yml"
+  - local: "explorer.apexaltruism.net/function/serve.yml"
+  - local: "explorer.apexaltruism.net/function/cease.yml"
   - local: "jump.apexaltruism.net/function/serve.yml"
   - local: "jump.apexaltruism.net/function/cease.yml"
   - local: "leantime.apexaltruism.net/function/serve.yml"

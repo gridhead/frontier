@@ -1,0 +1,14 @@
+{
+    "servname": "STOW_DATA_HERE",
+    "ntwkconn": "STOW_DATA_HERE",
+    "hostname": "STOW_DATA_HERE",
+    "maxcpugo": "STOW_DATA_HERE",
+    "maxramgo": "STOW_DATA_HERE",
+    "mincpugo": "STOW_DATA_HERE",
+    "minramgo": "STOW_DATA_HERE",
+    "useracid": "STOW_DATA_HERE",
+    "servlink": "STOW_DATA_HERE",
+    "portdist": "STOW_DATA_HERE",
+    "volmsrce": "STOW_DATA_HERE",
+    "gopolicy": "STOW_DATA_HERE"
+}
