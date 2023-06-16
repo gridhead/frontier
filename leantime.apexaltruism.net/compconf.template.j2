@@ -2,7 +2,8 @@
 
 # Reference taken from https://github.com/Leantime/docker-leantime/commit/7d236c20ce0089d2ae7d95e01babe616e73cac49
 
-version: "3.3"
+version: "3.8"
+name: "{{ servname | replace('.', '_') }}"
 services:
   {{ servname_data }}:
     image: "mysql:8.0"
@@ -26,7 +27,6 @@ services:
       - "{{ dataloca }}:/var/lib/mysql"
     command: "--character-set-server=utf8 --collation-server=utf8_unicode_ci"
     restart: "{{ gopolicy_data }}"
-
   {{ servname_aplc }}:
     image: "leantime/leantime:latest"
     network_mode: "{{ ntwkconn }}"
