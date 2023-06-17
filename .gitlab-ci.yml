@@ -18,8 +18,8 @@ include:
   - local: "leantime.apexaltruism.net/function/cease.yml"
   - local: "taskplan.apexaltruism.net/function/serve.yml"
   - local: "taskplan.apexaltruism.net/function/cease.yml"
-  - local: "vscode-mstr.apexaltruism.net/function/serve.yml"
-  - local: "vscode-mstr.apexaltruism.net/function/cease.yml"
+  - local: "vscode-main.apexaltruism.net/function/serve.yml"
+  - local: "vscode-main.apexaltruism.net/function/cease.yml"
   - local: "wirezone.apexaltruism.net/function/serve.yml"
   - local: "wirezone.apexaltruism.net/function/cease.yml"
 
