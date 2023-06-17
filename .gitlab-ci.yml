@@ -6,6 +6,8 @@ include:
   - local: "acmecorp.apexaltruism.net/function/cease.yml"
   - local: "chat.apexaltruism.net/function/serve.yml"
   - local: "chat.apexaltruism.net/function/cease.yml"
+  - local: "code.apexaltruism.net/function/serve.yml"
+  - local: "code.apexaltruism.net/function/cease.yml"
   - local: "dash.apexaltruism.net/function/serve.yml"
   - local: "dash.apexaltruism.net/function/cease.yml"
   - local: "download.apexaltruism.net/function/serve.yml"
