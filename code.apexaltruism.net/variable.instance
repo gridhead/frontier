@@ -22,7 +22,7 @@
     "shrdsize_rner": "STOW DATA HERE",
     "maxcpugo_rner": "STOW DATA HERE",
     "maxramgo_rner": "STOW DATA HERE",
-    "mincpugo_rner": "STOW DATA HERE"
+    "mincpugo_rner": "STOW DATA HERE",
     "minramgo_rner": "STOW DATA HERE",
     "volmconf_rner": "STOW DATA HERE",
     "gopolicy_rner": "STOW DATA HERE"
