@@ -1,11 +1,11 @@
-serve_vscode-mstr.apexaltruism.net:
+serve_vscode-main.apexaltruism.net:
   stage: "deploy"
   environment:
-    name: "vscode-mstr.apexaltruism.net"
+    name: "vscode-main.apexaltruism.net"
     action: "start"
   script:
     - echo "Implement the compose configuration file using the stored variable file"
-    - cat "$variable_vscode_mstr" > "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
+    - cat "$variable_vscode_main" > "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - ansible-playbook "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - echo "Deploy the stated service on the specified inventory location"
     - docker --host "$location_centvirt_slvb" compose --file "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/compconf.yml" up --detach
