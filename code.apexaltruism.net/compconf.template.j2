@@ -18,10 +18,10 @@ services:
           memory: "{{ minramgo_aplc }}"
     environment:
       - GITLAB_OMNIBUS_CONFIG: |
-          external_url "{{ extrlink_aplc }}"
-          user["username"] = "code"
-          user["group"] = "code"
-          gitlab_rails["gitlab_shell_ssh_port"] = "{{ portsshd_aplc }}"
+          external_url '{{ extrlink_aplc }}'
+          user['username'] = 'code'
+          user['group'] = 'code'
+          gitlab_rails['gitlab_shell_ssh_port'] = '{{ portsshd_aplc }}'
     ports:
       - "{{ porthttp_aplc }}:80/tcp"
       - "{{ portssld_aplc }}:443/tcp"
