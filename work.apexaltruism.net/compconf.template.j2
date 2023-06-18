@@ -40,6 +40,7 @@ services:
     environment:
       - "POSTGRES_USER={{ username_dtbs }}"
       - "POSTGRES_PASSWORD={{ password_dtbs }}"
+      - "POSTGRES_DB={{ dtbsname_dtbs }}"
     volumes:
       - "{{ volmsrce_dtbs }}:/var/lib/postgresql/data"
     restart: "{{ gopolicy_dtbs }}"
