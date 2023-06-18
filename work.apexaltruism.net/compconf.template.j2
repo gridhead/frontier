@@ -3,7 +3,7 @@ version: "3.8"
 name: "{{ servname | replace('.', '_') }}"
 services:
   {{ servname_aplc }}:
-    image: "redmine:alpine"
+    image: "redmine:latest"
     network_mode: "{{ ntwkconn_aplc }}"
     container_name: "{{ servname_aplc }}"
     hostname: "{{ hostname_aplc }}"
@@ -17,13 +17,15 @@ services:
           memory: "{{ minramgo_aplc }}"
     environment:
       - "REDMINE_DB_POSTGRES={{ servname_dtbs }}"
+      - "REDMINE_DB_DATABASE={{ dtbsname_dtbs }}"
+      - "REDMINE_DB_USERNAME={{ username_dtbs }}"
       - "REDMINE_DB_PASSWORD={{ password_dtbs }}"
       - "REDMINE_SECRET_KEY_BASE={{ scrtpass_aplc }}"
     ports:
       - "{{ portdist_aplc }}:3000/tcp"
     restart: "{{ gopolicy_aplc }}"
   {{ servname_dtbs }}:
-    image: "postgres:alpine"
+    image: "postgres:latest"
     network_mode: "{{ ntwkconn_dtbs }}"
     container_name: "{{ servname_dtbs }}"
     hostname: "{{ hostname_dtbs }}"

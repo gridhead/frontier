@@ -19,6 +19,7 @@
     "minramgo_dtbs": "STOW DATA HERE",
     "username_dtbs": "STOW DATA HERE",
     "password_dtbs": "STOW DATA HERE",
+    "dtbsname_dtbs": "STOW DATA HERE",
     "volmsrce_dtbs": "STOW DATA HERE",
     "gopolicy_dtbs": "STOW DATA HERE"
 }
