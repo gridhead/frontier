@@ -20,7 +20,7 @@ services:
       - "REDMINE_DB_PASSWORD={{ password_dtbs }}"
       - "REDMINE_SECRET_KEY_BASE={{ scrtpass_aplc }}"
     ports:
-      - "{{ portdist_serv }}:3000/tcp"
+      - "{{ portdist_aplc }}:3000/tcp"
     restart: "{{ gopolicy_aplc }}"
   {{ servname_dtbs }}:
     image: "postgres:alpine"
