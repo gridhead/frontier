@@ -1,0 +1,43 @@
+---
+version: "3.8"
+name: "{{ servname | replace('.', '_') }}"
+services:
+  {{ servname_aplc }}:
+    image: "redmine:alpine"
+    network_mode: "{{ ntwkconn_aplc }}"
+    container_name: "{{ servname_aplc }}"
+    hostname: "{{ hostname_aplc }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_aplc }}"
+          memory: "{{ maxramgo_aplc }}"
+        reservations:
+          cpus: "{{ mincpugo_aplc }}"
+          memory: "{{ minramgo_aplc }}"
+    environment:
+      - "REDMINE_DB_POSTGRES={{ servname_dtbs }}"
+      - "REDMINE_DB_PASSWORD={{ password_dtbs }}"
+      - "REDMINE_SECRET_KEY_BASE={{ scrtpass_aplc }}"
+    ports:
+      - "{{ portdist_serv }}:3000/tcp"
+    restart: "{{ gopolicy_aplc }}"
+  {{ servname_dtbs }}:
+    image: "postgres:alpine"
+    network_mode: "{{ ntwkconn_dtbs }}"
+    container_name: "{{ servname_dtbs }}"
+    hostname: "{{ hostname_dtbs }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_dtbs }}"
+          memory: "{{ maxramgo_dtbs }}"
+        reservations:
+          cpus: "{{ mincpugo_dtbs }}"
+          memory: "{{ minramgo_dtbs }}"
+    environment:
+      - "POSTGRES_USER={{ username_dtbs }}"
+      - "POSTGRES_PASSWORD={{ password_dtbs }}"
+    volumes:
+      - "{{ volmsrce_dtbs }}:/var/lib/postgresql/data"
+    restart: "{{ gopolicy_dtbs }}"

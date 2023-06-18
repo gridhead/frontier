@@ -24,6 +24,8 @@ include:
   - local: "vscode-main.apexaltruism.net/function/cease.yml"
   - local: "wirezone.apexaltruism.net/function/serve.yml"
   - local: "wirezone.apexaltruism.net/function/cease.yml"
+  - local: "work.apexaltruism.net/function/serve.yml"
+  - local: "work.apexaltruism.net/function/cease.yml"
 
 # The initial stage requires setting proper permissions for the keyfiles
 # This is to ensure that the "Host key verification failed" error is avoided
