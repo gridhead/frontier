@@ -8,7 +8,7 @@ cease_explorer.apexaltruism.net:
     - cat "$variable_explorer" > "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - ansible-playbook "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - echo "Deploy the stated service on the specified inventory location"
-    - docker --host "$location_centvirt_slvc" compose --file "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/compconf.yml" down
+    - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/compconf.yml" down
   rules:
     - changes:
         - "$CI_ENVIRONMENT_NAME/tasknote/cease"
