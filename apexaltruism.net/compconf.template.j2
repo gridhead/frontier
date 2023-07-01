@@ -1,0 +1,47 @@
+---
+version: "3.8"
+name: "{{ servname | replace('.', '_') }}"
+services:
+  {{ servname_frnt }}:
+    image: "ghost:alpine"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_frnt }}"
+    hostname: "{{ hostname_frnt }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_frnt }}"
+          memory: "{{ maxramgo_frnt }}"
+        reservations:
+          cpus: "{{ mincpugo_frnt }}"
+          memory: "{{ minramgo_frnt }}"
+    environment:
+      - "database__client={{ dtbsclnt }}"
+      - "database__connection__host={{ servname_base }}"
+      - "database__connection__user={{ dtbsuser }}"
+      - "database__connection__password={{ dtbspass }}"
+      - "database__connection__database={{ dtbsdata }}"
+      - "url={{ mainlink }}"
+    ports:
+      - "{{ portdist }}:2368/tcp"
+    restart: "{{ gopolicy }}"
+  {{ servname_base }}:
+    image: "mysql:8.0"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_base }}"
+    hostname: "{{ hostname_base }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_base }}"
+          memory: "{{ maxramgo_base }}"
+        reservations:
+          cpus: "{{ mincpugo_base }}"
+          memory: "{{ minramgo_base }}"
+    environment:
+      - "MYSQL_USER={{ dtbsuser }}"
+      - "MYSQL_PASSWORD={{ dtbspass }}"
+      - "MYSQL_ROOT_PASSWORD={{ rootpass }}"
+    volumes:
+      - "{{ dtbsloca }}:/var/lib/mysql"
+    restart: "{{ gopolicy }}"

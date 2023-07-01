@@ -4,6 +4,8 @@
 include:
   - local: "acmecorp.apexaltruism.net/function/serve.yml"
   - local: "acmecorp.apexaltruism.net/function/cease.yml"
+  - local: "apexaltruism.net/function/serve.yml"
+  - local: "apexaltruism.net/function/cease.yml"
   - local: "chat.apexaltruism.net/function/serve.yml"
   - local: "chat.apexaltruism.net/function/cease.yml"
   - local: "code.apexaltruism.net/function/serve.yml"
