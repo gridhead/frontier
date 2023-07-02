@@ -53,7 +53,7 @@ push-sync-github:
 deployment-prep:
   stage: "deploy"
   image: "fedora:37"
-  script:
+  before_script:
     - echo "Setup secure shell client configuration for automatic authentication"
     - mkdir -p "/root/.ssh/" && chmod 700 "/root/.ssh/"
     - cat "$privcode_trsa" > "/root/.ssh/id_rsa" && chmod 600 "/root/.ssh/id_rsa"
