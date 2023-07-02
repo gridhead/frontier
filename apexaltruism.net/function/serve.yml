@@ -1,5 +1,7 @@
 serve_apexaltruism.net:
   stage: "deploy"
+  extends:
+    - .deployment-prep
   environment:
     name: "apexaltruism.net"
     action: "start"
