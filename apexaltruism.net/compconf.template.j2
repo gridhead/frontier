@@ -3,7 +3,7 @@ version: "3.8"
 name: "{{ servname | replace('.', '_') }}"
 services:
   {{ servname_frnt }}:
-    image: "ghost:alpine"
+    image: "ghost:latest"
     network_mode: "{{ ntwkconn }}"
     container_name: "{{ servname_frnt }}"
     hostname: "{{ hostname_frnt }}"
@@ -42,6 +42,7 @@ services:
       - "MYSQL_USER={{ dtbsuser }}"
       - "MYSQL_PASSWORD={{ dtbspass }}"
       - "MYSQL_ROOT_PASSWORD={{ rootpass }}"
+      - "MYSQL_DATABASE={{ dtbsdata }}"
     volumes:
       - "{{ dtbsloca }}:/var/lib/mysql"
     restart: "{{ gopolicy }}"
