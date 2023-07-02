@@ -33,13 +33,13 @@ include:
 # repository available on GitHub whenever a push is made to the primary branch
 # of the source repository.
 
-push_sync:
+push-sync-github:
   image: "fedora:latest"
   script:
     - echo "Install Git and its dependencies"
     - dnf install git --setopt=install_weak_deps=False --assumeyes
     - echo "Adding destination repository as a remote"
-    - git --git-dir=$CI_PROJECT_DIR/.git remote add githubac https://t0xic0der:$githubac@github.com/frontier.git
+    - git --git-dir=$CI_PROJECT_DIR/.git remote add githubac https://t0xic0der:$githubac@github.com/t0xic0der/frontier.git
     - echo "Pushing the changes to the destination repository"
     - git --git-dir=$CI_PROJECT_DIR/.git push githubac main
   rules:
