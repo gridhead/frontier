@@ -41,7 +41,7 @@ push-sync-github:
     - echo "Adding destination repository as a remote"
     - git --git-dir=$CI_PROJECT_DIR/.git remote add githubac https://t0xic0der:$githubac@github.com/t0xic0der/frontier.git
     - echo "Pushing the changes to the destination repository"
-    - git --git-dir=$CI_PROJECT_DIR/.git push githubac main
+    - git --git-dir=$CI_PROJECT_DIR/.git push githubac main --force
   rules:
     - if: $CI_PIPELINE_SOURCE == "push"
 
