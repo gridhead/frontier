@@ -49,7 +49,7 @@ push-sync-github:
 # This is to ensure that the "Host key verification failed" error is avoided
 # This error happens due to the "UNPROTECTED PRIVATE KEY FILE" error
 
-default:
+deployment-prep:
   image: "fedora:37"
   before_script:
     - echo "Setup secure shell client configuration for automatic authentication"
