@@ -1,7 +1,7 @@
 cease_jump.apexaltruism.net:
+  stage: "deploy"
   extends:
     - .deployment-prep
-  stage: "deploy"
   environment:
     name: "jump.apexaltruism.net"
     action: "stop"
