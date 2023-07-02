@@ -1,5 +1,7 @@
 serve_leantime.apexaltruism.net:
   stage: "deploy"
+  extends:
+    - .deployment-prep
   environment:
     name: "leantime.apexaltruism.net"
     action: "start"
