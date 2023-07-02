@@ -34,7 +34,7 @@ include:
 # of the source repository.
 
 push-sync-github:
-  stage: "mirror"
+  stage: "test"
   image: "fedora:latest"
   script:
     - echo "Install Git and its dependencies"
