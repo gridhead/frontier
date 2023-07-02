@@ -29,6 +29,22 @@ include:
   - local: "work.apexaltruism.net/function/serve.yml"
   - local: "work.apexaltruism.net/function/cease.yml"
 
+# Mirror the source repository available on GitLab to the destination 
+# repository available on GitHub whenever a push is made to the primary branch
+# of the source repository.
+
+push_sync:
+  image: "fedora:latest"
+  script:
+    - echo "Install Git and its dependencies"
+    - dnf install git --setopt=install_weak_deps=False --assumeyes
+    - echo "Adding destination repository as a remote"
+    - git --git-dir=$CI_PROJECT_DIR/.git remote add githubac https://t0xic0der:$githubac@github.com/frontier.git
+    - echo "Pushing the changes to the destination repository"
+    - git --git-dir=$CI_PROJECT_DIR/.git push githubac main
+  rules:
+    if: $CI_PIPELINE_SOURCE = "push"
+
 # The initial stage requires setting proper permissions for the keyfiles
 # This is to ensure that the "Host key verification failed" error is avoided
 # This error happens due to the "UNPROTECTED PRIVATE KEY FILE" error
