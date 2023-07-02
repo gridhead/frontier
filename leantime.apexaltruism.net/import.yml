@@ -1,0 +1,3 @@
+include:
+  - local: "leantime.apexaltruism.net/function/cease.yml"
+  - local: "leantime.apexaltruism.net/function/serve.yml"
