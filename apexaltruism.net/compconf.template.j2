@@ -22,6 +22,8 @@ services:
       - "database__connection__password={{ dtbspass }}"
       - "database__connection__database={{ dtbsdata }}"
       - "url={{ mainlink }}"
+    volumes:
+      - "{{ gostatic }}:/var/lib/ghost/content"
     ports:
       - "{{ portdist }}:2368/tcp"
     restart: "{{ gopolicy }}"
