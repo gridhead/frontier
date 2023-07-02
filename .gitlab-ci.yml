@@ -43,7 +43,8 @@ push-sync-github:
     - echo "Pushing the changes to the destination repository"
     - git --git-dir=$CI_PROJECT_DIR/.git push githubac main
   rules:
-    if: $CI_PIPELINE_SOURCE = "push"
+    - if: $CI_PIPELINE_SOURCE = "push"
+      when: "on_success"
 
 # The initial stage requires setting proper permissions for the keyfiles
 # This is to ensure that the "Host key verification failed" error is avoided
