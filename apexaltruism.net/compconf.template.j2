@@ -16,12 +16,12 @@ services:
           cpus: "{{ mincpugo_frnt }}"
           memory: "{{ minramgo_frnt }}"
     environment:
-      - "database__client={{ dtbsclnt }}"
-      - "database__connection__host={{ servname_base }}"
-      - "database__connection__user={{ dtbsuser }}"
-      - "database__connection__password={{ dtbspass }}"
-      - "database__connection__database={{ dtbsdata }}"
-      - "url={{ mainlink }}"
+      database__client: "{{ dtbsclnt }}"
+      database__connection__host: "{{ servname_base }}"
+      database__connection__user: "{{ dtbsuser }}"
+      database__connection__password: "{{ dtbspass }}"
+      database__connection__database: "{{ dtbsdata }}"
+      url: "{{ mainlink }}"
     volumes:
       - "{{ gostatic }}:/var/lib/ghost/content"
     ports:
@@ -41,10 +41,10 @@ services:
           cpus: "{{ mincpugo_base }}"
           memory: "{{ minramgo_base }}"
     environment:
-      - "MYSQL_USER={{ dtbsuser }}"
-      - "MYSQL_PASSWORD={{ dtbspass }}"
-      - "MYSQL_ROOT_PASSWORD={{ rootpass }}"
-      - "MYSQL_DATABASE={{ dtbsdata }}"
+      MYSQL_USER: "{{ dtbsuser }}"
+      MYSQL_PASSWORD: "{{ dtbspass }}"
+      MYSQL_ROOT_PASSWORD: "{{ rootpass }}"
+      MYSQL_DATABASE: "{{ dtbsdata }}"
     volumes:
       - "{{ dtbsloca }}:/var/lib/mysql"
     restart: "{{ gopolicy }}"
