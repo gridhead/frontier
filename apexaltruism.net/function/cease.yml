@@ -7,7 +7,7 @@ cease_apexaltruism.net:
     action: "stop"
   script:
     - echo "Implement the compose configuration file using the stored variable file"
-    - cat "$variable_blog" > "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
+    - cat "$variable_root" > "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - ansible-playbook "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/prepbook.yml" --extra-vars "@$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/variable.json"
     - echo "Deploy the stated service on the specified inventory location"
     - docker --host "$location_centvirt_slva" compose --file "$CI_PROJECT_DIR/$CI_ENVIRONMENT_NAME/compconf.yml" down
