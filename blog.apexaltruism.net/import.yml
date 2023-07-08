@@ -1,0 +1,3 @@
+include:
+  - local: "blog.apexaltruism.net/function/cease.yml"
+  - local: "blog.apexaltruism.net/function/serve.yml"

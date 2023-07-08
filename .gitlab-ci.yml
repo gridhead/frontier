@@ -4,6 +4,7 @@
 include:
   - local: "acmecorp.apexaltruism.net/import.yml"
   - local: "apexaltruism.net/import.yml"
+  - local: "blog.apexaltruism.net/import.yml"
   - local: "chat.apexaltruism.net/import.yml"
   - local: "code.apexaltruism.net/import.yml"
   - local: "dash.apexaltruism.net/import.yml"
