@@ -3,7 +3,7 @@ cease_blog.apexaltruism.net:
   extends:
     - .deployment-prep
   environment:
-    name: "apexaltruism.net"
+    name: "blog.apexaltruism.net"
     action: "stop"
   script:
     - echo "Implement the compose configuration file using the stored variable file"
