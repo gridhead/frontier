@@ -21,6 +21,7 @@ services:
       MYSQL_PASSWORD: "{{ dtbspass }}"
       MYSQL_ROOT_PASSWORD: "{{ rootpass }}"
       MYSQL_DATABASE: "{{ dtbsname }}"
+      MYSQL_HOST: "{{ servname_base }}"
       REDIS_HOST: "{{ servname_cach }}"
       REDIS_PASSWORD: "{{ password_cach }}"
     volumes:
