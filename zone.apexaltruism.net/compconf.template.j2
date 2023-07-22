@@ -20,14 +20,11 @@ services:
       MYSQL_PASSWORD: "{{ dtbspass }}"
       MYSQL_ROOT_PASSWORD: "{{ rootpass }}"
       MYSQL_DATABASE: "{{ dtbsname }}"
-      NEXTCLOUD_ADMIN_USER: "{{ username_frnt }}"
-      NEXTCLOUD_ADMIN_PASSWORD: "{{ password_frnt }}"
-      NEXTCLOUD_DATA_DIR: "/data"
       REDIS_HOST: "{{ servname_cach }}"
       REDIS_PASSWORD: "{{ password_cach }}"
     volumes:
       - "{{ gostatic }}:/var/www/html"
-      - "{{ datadrct }}:/data"
+      - "{{ datadrct }}:/var/www/html/data"
     ports:
       - "{{ portdist }}:80/tcp"
     restart: "{{ gopolicy }}"
