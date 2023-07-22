@@ -1,0 +1,72 @@
+---
+version: "3.8"
+name: "{{ servname | replace('.', '_') }}"
+services:
+  {{ servname_frnt }}:
+    image: "nextcloud:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_frnt }}"
+    hostname: "{{ hostname_frnt }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_frnt }}"
+          memory: "{{ maxramgo_frnt }}"
+        reservations:
+          cpus: "{{ mincpugo_frnt }}"
+          memory: "{{ minramgo_frnt }}"
+    environment:
+      MYSQL_USER: "{{ dtbsuser }}"
+      MYSQL_PASSWORD: "{{ dtbspass }}"
+      MYSQL_ROOT_PASSWORD: "{{ rootpass }}"
+      MYSQL_DATABASE: "{{ dtbsname }}"
+      NEXTCLOUD_ADMIN_USER: "{{ username_frnt }}"
+      NEXTCLOUD_ADMIN_PASSWORD: "{{ password_frnt }}"
+      NEXTCLOUD_DATA_DIR: "/data"
+      REDIS_HOST: "{{ servname_cach }}"
+      REDIS_PASSWORD: "{{ password_cach }}"
+    volumes:
+      - "{{ gostatic }}:/var/www/html"
+      - "{{ datadrct }}:/data"
+    ports:
+      - "{{ portdist }}:80/tcp"
+    restart: "{{ gopolicy }}"
+  {{ servname_base }}:
+    image: "mysql:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_base }}"
+    hostname: "{{ hostname_base }}"
+    command: "--transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_base }}"
+          memory: "{{ maxramgo_base }}"
+        reservations:
+          cpus: "{{ mincpugo_base }}"
+          memory: "{{ minramgo_base }}"
+    environment:
+      MYSQL_USER: "{{ dtbsuser }}"
+      MYSQL_PASSWORD: "{{ dtbspass }}"
+      MYSQL_ROOT_PASSWORD: "{{ rootpass }}"
+      MYSQL_DATABASE: "{{ dtbsname }}"
+    volumes:
+      - "{{ dtbsloca }}:/var/lib/mysql"
+    restart: "{{ gopolicy }}"
+  {{ servname_cach }}:
+    image: "redis:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_cach }}"
+    hostname: "{{ hostname_cach }}"
+    command: "redis-server --requirepass {{ password_cach }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_cach }}"
+          memory: "{{ maxramgo_cach }}"
+        reservations:
+          cpus: "{{ mincpugo_cach }}"
+          memory: "{{ minramgo_cach }}"
+    volumes:
+      - "{{ cachedir }}:/data"
+    restart: "{{ gopolicy }}"

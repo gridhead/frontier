@@ -16,6 +16,7 @@ include:
   - local: "vscode-main.apexaltruism.net/import.yml"
   - local: "wirezone.apexaltruism.net/import.yml"
   - local: "work.apexaltruism.net/import.yml"
+  - local: "zone.apexaltruism.net/import.yml"
 
 # Mirror the source repository available on GitLab to the destination 
 # repository available on GitHub whenever a push is made to the primary branch
