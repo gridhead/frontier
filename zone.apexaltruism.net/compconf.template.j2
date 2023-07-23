@@ -18,6 +18,8 @@ services:
     environment:
       OVERWRITECLIURL: "{{ servname }}"
       OVERWRITEPROTOCOL: "https"
+      PHP_MEMORY_LIMIT: "{{ memlimit_frnt }}"
+      PHP_UPLOAD_LIMIT: "{{ phplimit_frnt }}"
       NEXTCLOUD_DATA_DIR: "/var/www/html/data"
       NEXTCLOUD_ADMIN_USER: "{{ username_frnt }}"
       NEXTCLOUD_ADMIN_PASSWORD: "{{ password_frnt }}"

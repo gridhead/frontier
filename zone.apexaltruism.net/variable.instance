@@ -17,6 +17,8 @@
     "maxramgo_frnt": "STOW DATA HERE",
     "mincpugo_frnt": "STOW DATA HERE",
     "minramgo_frnt": "STOW DATA HERE",
+    "memlimit_frnt": "STOW DATA HERE",
+    "phplimit_frnt": "STOW DATA HERE",
     "username_frnt": "STOW DATA HERE",
     "password_frnt": "STOW DATA HERE",
     "servname_base": "STOW DATA HERE",
