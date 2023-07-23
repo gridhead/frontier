@@ -16,6 +16,8 @@ services:
           cpus: "{{ mincpugo_frnt }}"
           memory: "{{ minramgo_frnt }}"
     environment:
+      OVERWRITECLIURL: "{{ servname }}"
+      OVERWRITEPROTOCOL: "https"
       NEXTCLOUD_DATA_DIR: "/var/www/html/data"
       NEXTCLOUD_ADMIN_USER: "{{ username_frnt }}"
       NEXTCLOUD_ADMIN_PASSWORD: "{{ password_frnt }}"
