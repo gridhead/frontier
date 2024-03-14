@@ -12,6 +12,7 @@ include:
   - local: "explorer.apexaltruism.net/import.yml"
   - local: "jump.apexaltruism.net/import.yml"
   - local: "leantime.apexaltruism.net/import.yml"
+  - local: "play.apexaltruism.net/import.yml"
   - local: "taskplan.apexaltruism.net/import.yml"
   - local: "vscode-main.apexaltruism.net/import.yml"
   - local: "wirezone.apexaltruism.net/import.yml"
