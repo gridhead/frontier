@@ -1,0 +1,14 @@
+{
+    "servname": "STOW DATA HERE",
+    "ntwkconn": "STOW DATA HERE",
+    "hostname": "STOW DATA HERE",
+    "shrdsize": "STOW DATA HERE",
+    "maxcpugo": "STOW DATA HERE",
+    "maxramgo": "STOW DATA HERE",
+    "mincpugo": "STOW DATA HERE",
+    "minramgo": "STOW DATA HERE",
+    "volmconf": "STOW DATA HERE",
+    "volmtvsr": "STOW DATA HERE",
+    "volmgomv": "STOW DATA HERE",
+    "gopolicy": "STOW DATA HERE"
+}

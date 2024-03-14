@@ -1,0 +1,30 @@
+---
+version: "3.8"
+name: "{{ servname | replace('.', '_') }}"
+services:
+  {{ servname }}:
+    image: "lscr.io/linuxserver/plex:latest"
+    network_mode: "{{ ntwkconn_aplc }}"
+    container_name: "{{ servname_aplc }}"
+    hostname: "{{ hostname_aplc }}"
+    shm_size: "{{ shrdsize_aplc }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_aplc }}"
+          memory: "{{ maxramgo_aplc }}"
+        reservations:
+          cpus: "{{ mincpugo_aplc }}"
+          memory: "{{ minramgo_aplc }}"
+    environment:
+      - "PUID=1000"
+      - "PGID=1000"
+      - "TZ=Asia/Kolkata"
+      - "VERSION=docker"
+    volumes:
+      - "{{ volmconf_aplc }}:/config"
+      - "{{ volmtvsr_aplc }}:/tvseries"
+      - "{{ volmgomv_aplc }}:/gomovies"
+    devices:
+      - "/dev/dri:/dev/dri"
+    restart: "{{ gopolicy_aplc }}"
