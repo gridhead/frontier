@@ -1,0 +1,3 @@
+include:
+  - local: "transmission.apexaltruism.net/function/cease.yml"
+  - local: "transmission.apexaltruism.net/function/serve.yml"

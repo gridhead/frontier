@@ -1,0 +1,33 @@
+---
+version: "3.8"
+name: "{{ servname | replace('.', '_') }}"
+services:
+  {{ servname }}:
+    image: "lscr.io/linuxserver/transmission:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname }}"
+    hostname: "{{ hostname }}"
+    shm_size: "{{ shrdsize }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo }}"
+          memory: "{{ maxramgo }}"
+        reservations:
+          cpus: "{{ mincpugo }}"
+          memory: "{{ minramgo }}"
+    environment:
+      - "PUID=1000"
+      - "PGID=1000"
+      - "TZ={{ timezone }}"
+      - "USER={{ apexuser }}"
+      - "PASS={{ apexpass }}"
+    volumes:
+      - "{{ volmconf }}:/config"
+      - "{{ volmdown }}:/downloads"
+      - "{{ volmauto }}:/watch"
+    ports:
+      - "{{ porthttp }}:9091"
+      - "{{ portxtcp }}:51413/tcp"
+      - "{{ portxudp }}:51413/udp"
+    restart: "{{ gopolicy }}"

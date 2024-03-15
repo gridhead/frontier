@@ -1,0 +1,20 @@
+{
+    "servname": "STOW DATA HERE",
+    "ntwkconn": "STOW DATA HERE",
+    "hostname": "STOW DATA HERE",
+    "shrdsize": "STOW DATA HERE",
+    "maxcpugo": "STOW DATA HERE",
+    "maxramgo": "STOW DATA HERE",
+    "mincpugo": "STOW DATA HERE",
+    "minramgo": "STOW DATA HERE",
+    "timezone": "STOW DATA HERE",
+    "apexuser": "STOW DATA HERE",
+    "apexpass": "STOW DATA HERE",
+    "volmconf": "STOW DATA HERE",
+    "volmdown": "STOW DATA HERE",
+    "volmauto": "STOW DATA HERE",
+    "porthttp": "STOW DATA HERE",
+    "portxtcp": "STOW DATA HERE",
+    "portxudp": "STOW DATA HERE",
+    "gopolicy": "STOW DATA HERE"
+}
