@@ -14,6 +14,7 @@ include:
   - local: "leantime.apexaltruism.net/import.yml"
   - local: "play.apexaltruism.net/import.yml"
   - local: "taskplan.apexaltruism.net/import.yml"
+  - local: "transmission.apexaltruism.net/import.yml"
   - local: "vscode-main.apexaltruism.net/import.yml"
   - local: "wirezone.apexaltruism.net/import.yml"
   - local: "work.apexaltruism.net/import.yml"
