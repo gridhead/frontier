@@ -37,7 +37,7 @@ services:
           cpus: "{{ mincpugo_back }}"
           memory: "{{ minramgo_back }}"
     environment:
-      MWB_POSTGRES__CONNECTION: "postgresql://{{ dtbsuser }}:{{ dtbspass }}@{{ servname_base }}:{{ dtbsport }}/{{ dtbsdata }}"
+      MWB_POSTGRES__CONNECTION: "postgresql://{{ dtbsuser }}:{{ dtbspass }}@{{ servname_base }}:5432/{{ dtbsdata }}"
       MWB_CRYPTO__SESSION_SECRET: "{{ secret_back }}"
       MWB_META__NAME: "{{ metaname_back }}"
       MWB_POSTGRES__MIGRATE_ON_BOOT: "true"
