@@ -3,7 +3,7 @@ serve_stream.apexaltruism.net:
   extends:
     - .deployment-prep
   environment:
-    name: "serve.apexaltruism.net"
+    name: "stream.apexaltruism.net"
     action: "start"
   script:
     - echo "Implement the compose configuration file using the stored variable file"
