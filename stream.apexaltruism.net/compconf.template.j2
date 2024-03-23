@@ -1,0 +1,69 @@
+---
+version: "3.8"
+name: "{{ servname | replace('.', '_') }}"
+services:
+  {{ servname_frnt }}:
+    build:
+      context: https://github.com/movie-web/movie-web.git
+      args:
+         TMDB_READ_API_KEY: "{{ tmapikey_frnt }}"
+         CORS_PROXY_URL: "{{ corspurl_frnt }}"
+         BACKEND_URL: "{{ backlink_frnt }}"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_frnt }}"
+    hostname: "{{ hostname_frnt }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_frnt }}"
+          memory: "{{ maxramgo_frnt }}"
+        reservations:
+          cpus: "{{ mincpugo_frnt }}"
+          memory: "{{ minramgo_frnt }}"
+    ports:
+      - "{{ portdist_frnt }}:80/tcp"
+    restart: "{{ gopolicy }}"      
+  {{ servname_back }}:
+    image: "ghcr.io/movie-web/backend:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_back }}"
+    hostname: "{{ hostname_back }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_back }}"
+          memory: "{{ maxramgo_back }}"
+        reservations:
+          cpus: "{{ mincpugo_back }}"
+          memory: "{{ minramgo_back }}"
+    environment:
+      MWB_POSTGRES__CONNECTION: postgresql://{{ dtbsuser }}:{{ dtbspass }}@{{ servname_base }}:5432/{{ dtbsdata }}
+      MWB_CRYPTO__SESSION_SECRET: {{ secret_back }}
+      MWB_META__NAME: {{ metaname_back }}
+      MWB_POSTGRES__MIGRATE_ON_BOOT: "true"
+      MIKRO_ORM_MIGRATIONS_DISABLE_FOREIGN_KEYS: "true"
+    ports:
+      - "{{ portdist_back }}:80/tcp"
+    restart: "{{ gopolicy }}"
+  {{ servname_base }}:
+    image: "postgres:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_base }}"
+    hostname: "{{ hostname_base }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_base }}"
+          memory: "{{ maxramgo_base }}"
+        reservations:
+          cpus: "{{ mincpugo_base }}"
+          memory: "{{ minramgo_base }}"
+    environment:
+      POSTGRES_DB: "{{ dtbsdata }}"
+      POSTGRES_USER: "{{ dtbsuser }}"
+      POSTGRES_PASSWORD: "{{ dtbspass }}"
+    volumes:
+      - "{{ dtbsloca }}:/var/lib/postgresql/data"
+    ports:
+      - "{{ dtbsport }}:5432"
+    restart: "{{ gopolicy }}"
