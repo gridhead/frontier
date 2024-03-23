@@ -40,7 +40,7 @@ services:
       MWB_POSTGRES__CONNECTION: "postgresql://{{ dtbsuser }}:{{ dtbspass }}@{{ servname_base }}:5432/{{ dtbsdata }}"
       MWB_CRYPTO__SESSION_SECRET: "{{ secret_back }}"
       MWB_META__NAME: "{{ metaname_back }}"
-      MWB_SERVER__CORS: "{{ servname }}"
+      MWB_SERVER__ALLOW_ANY_SITE: "true"
       MWB_SERVER__TRUST_PROXY: "true"
       MWB_SERVER__TRUST_CLOUDFLARE: "true"
       MWB_POSTGRES__MIGRATE_ON_BOOT: "true"
