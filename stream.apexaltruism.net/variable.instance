@@ -18,6 +18,8 @@
     "mincpugo_back": "STOW DATA HERE",
     "minramgo_back": "STOW DATA HERE",
     "portdist_back": "STOW DATA HERE",
+    "secret_back": "STOW DATA HERE",
+    "metaname_back": "STOW DATA HERE",
     "servname_base": "STOW DATA HERE",
     "hostname_base": "STOW DATA HERE",
     "maxcpugo_base": "STOW DATA HERE",
