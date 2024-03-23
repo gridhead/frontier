@@ -22,7 +22,7 @@ services:
           memory: "{{ minramgo_frnt }}"
     ports:
       - "{{ portdist_frnt }}:80/tcp"
-    restart: "{{ gopolicy }}"      
+    restart: "{{ gopolicy }}"
   {{ servname_back }}:
     image: "ghcr.io/movie-web/backend:latest"
     network_mode: "{{ ntwkconn }}"
