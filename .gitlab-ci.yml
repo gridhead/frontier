@@ -13,6 +13,7 @@ include:
   - local: "jump.apexaltruism.net/import.yml"
   - local: "leantime.apexaltruism.net/import.yml"
   - local: "play.apexaltruism.net/import.yml"
+  - local: "stream.apexaltruism.net/import.yml"
   - local: "taskplan.apexaltruism.net/import.yml"
   - local: "transmission.apexaltruism.net/import.yml"
   - local: "vscode-main.apexaltruism.net/import.yml"
