@@ -1,0 +1,7 @@
+- name: "Establish template"
+  hosts: "127.0.0.1"
+  tasks:
+    - name: "Setting the variables in the compose configuration template"
+      template:
+        src: "compconf.template.j2"
+        dest: "compconf.yml"
