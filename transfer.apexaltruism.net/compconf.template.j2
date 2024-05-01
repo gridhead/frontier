@@ -25,9 +25,9 @@ services:
     network_mode: "{{ ntwkconn }}"
     container_name: "{{ servname_back }}"
     hostname: "{{ hostname_back }}"
-    read_only: "true"
+    read_only: true
     stop_grace_period: "{{ stoptime }}"
-    tty: "true"
+    tty: true
     tmpfs:
       - "/tmp"
     deploy:
