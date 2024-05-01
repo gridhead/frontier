@@ -2,55 +2,33 @@
 version: "3.8"
 name: "{{ servname | replace('.', '_') }}"
 services:
-  {{ servname_frnt }}:
-    image: "ghcr.io/vuetorrent/vuetorrent-backend:latest"
+  {{ servname }}:
+    image: "qbittorrentofficial/qbittorrent-nox:{{ qbsemver }}"
     network_mode: "{{ ntwkconn }}"
-    container_name: "{{ servname_frnt }}"
-    hostname: "{{ hostname_frnt }}"
-    deploy:
-      resources:
-        limits:
-          cpus: "{{ maxcpugo_frnt }}"
-          memory: "{{ maxramgo_frnt }}"
-        reservations:
-          cpus: "{{ mincpugo_frnt }}"
-          memory: "{{ minramgo_frnt }}"
-    volumes:
-      - "{{ frntloca }}:/app/data"
-    ports:
-      - "{{ frntport }}:3000/tcp"
-    restart: "{{ gopolicy }}"
-  {{ servname_back }}:
-    image: "qbittorrentofficial/qbittorrent-nox:latest"
-    network_mode: "{{ ntwkconn }}"
-    container_name: "{{ servname_back }}"
-    hostname: "{{ hostname_back }}"
+    container_name: "{{ servname }}"
+    hostname: "{{ hostname }}"
     read_only: true
     stop_grace_period: "{{ stoptime }}"
     tty: true
-    tmpfs:
-      - "/tmp"
     deploy:
       resources:
         limits:
-          cpus: "{{ maxcpugo_back }}"
-          memory: "{{ maxramgo_back }}"
+          cpus: "{{ maxcpugo }}"
+          memory: "{{ maxramgo }}"
         reservations:
-          cpus: "{{ mincpugo_back }}"
-          memory: "{{ minramgo_back }}"
+          cpus: "{{ mincpugo }}"
+          memory: "{{ minramgo }}"
     environment:
       - "PUID={{ userpuid }}"
       - "PGID={{ userpgid }}"
       - "TZ={{ timezone }}"
       - "QBT_EULA={{ frnteula }}"
-      - "QBT_WEBUI_PORT={{ backport }}"
+      - "QBT_WEBUI_PORT={{ httpport }}"
       - "QBT_VERSION={{ qbsemver }}"
-      - "UMASK={{ backmask }}"
+      - "UMASK={{ filemask }}"
     volumes:
       - "{{ confvolm }}:/config"
       - "{{ filevolm }}:/downloads"
     ports:
-      - "{{ backxtcp }}:6881/tcp"
-      - "{{ backxudp }}:6881/udp"
-      - "{{ backport }}:8080/tcp"
+      - "{{ httpport }}:8080/tcp"
     restart: "{{ gopolicy }}"
