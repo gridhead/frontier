@@ -9,6 +9,8 @@ services:
     hostname: "{{ hostname }}"
     stop_grace_period: "{{ stoptime }}"
     tty: true
+    tmpfs:
+      - "/tmp"
     deploy:
       resources:
         limits:
