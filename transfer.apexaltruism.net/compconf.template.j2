@@ -27,7 +27,7 @@ services:
     hostname: "{{ hostname_back }}"
     read_only: "{{ readonly }}"
     stop_grace_period: "{{ stoptime }}"
-    tty: "{{ termtext }}"
+    tty: true
     tmpfs:
       - "/tmp"
     deploy:
