@@ -1,0 +1,31 @@
+---
+version: "3.8"
+name: "{{ servname | replace('.', '_') }}"
+services:
+  {{ servname }}:
+    image: "gitlab/gitlab-ce:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname }}"
+    hostname: "{{ hostname }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo }}"
+          memory: "{{ maxramgo }}"
+        reservations:
+          cpus: "{{ mincpugo }}"
+          memory: "{{ minramgo }}"
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url "https://source.apexaltruism.net"
+        gitlab_rails["gitlab_shell_ssh_port"] = 2424
+        gitlab_rails["lfs_enabled"] = true
+    ports:
+      - "{{ portdist_http }}"
+      - "{{ portdist_sshp }}"
+      - "{{ portdist_tlsp }}"
+    volumes:
+      - "{{ gtlbconf }}:/etc/gitlab"
+      - "{{ gtlblogs }}:/var/log/gitlab"
+      - "{{ gtlbdata }}:/var/opt/gitlab"
+    shm_size: "{{ shmquant }}"

@@ -1,0 +1,17 @@
+{
+    "servname": "STOW DATA HERE",
+    "ntwkconn": "STOW DATA HERE",
+    "maxcpugo": "STOW DATA HERE",
+    "maxramgo": "STOW DATA HERE",
+    "mincpugo": "STOW DATA HERE",
+    "minramgo": "STOW DATA HERE",
+    "shmquant": "STOW DATA HERE",
+    "extrlink": "STOW DATA HERE",
+    "sshdlink": "STOW DATA HERE",
+    "portdist_http": "STOW DATA HERE",
+    "portdist_sshp": "STOW DATA HERE",
+    "portdist_tlsp": "STOW DATA HERE",
+    "gtlbconf": "STOW DATA HERE",
+    "gtlblogs": "STOW DATA HERE",
+    "gtlbdata": "STOW DATA HERE"
+}
