@@ -14,6 +14,7 @@ include:
   - local: "leantime.apexaltruism.net/import.yml"
   - local: "play.apexaltruism.net/import.yml"
   - local: "stream.apexaltruism.net/import.yml"
+  - local: "source.apexaltruism.net/import.yml"
   - local: "taskplan.apexaltruism.net/import.yml"
   - local: "transfer.apexaltruism.net/import.yml"
   - local: "transmission.apexaltruism.net/import.yml"
