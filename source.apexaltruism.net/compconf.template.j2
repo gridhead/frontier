@@ -3,7 +3,7 @@ version: "3.8"
 name: "{{ servname | replace('.', '_') }}"
 services:
   {{ servname }}:
-    image: "gitlab/gitlab-ce:latest"
+    image: "gitlab/gitlab-ce:17.1.0-ce.0"
     network_mode: "{{ ntwkconn }}"
     container_name: "{{ servname }}"
     hostname: "{{ hostname }}"
