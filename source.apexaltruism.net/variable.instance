@@ -1,6 +1,7 @@
 {
     "servname": "STOW DATA HERE",
     "ntwkconn": "STOW DATA HERE",
+    "hostname": "STOW DATA HERE",
     "maxcpugo": "STOW DATA HERE",
     "maxramgo": "STOW DATA HERE",
     "mincpugo": "STOW DATA HERE",
