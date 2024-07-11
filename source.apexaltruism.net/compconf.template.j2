@@ -3,7 +3,7 @@ version: "3.8"
 name: "{{ servname | replace('.', '_') }}"
 services:
   {{ servname_frnt }}:
-    image: "gitlab/gitlab-ce:17.1.0-ce.0"
+    image: "gitlab/gitlab-ce:16.11.6-ce.0"
     network_mode: "{{ ntwkconn }}"
     container_name: "{{ servname_frnt }}"
     hostname: "{{ hostname_frnt }}"
@@ -33,13 +33,13 @@ services:
       - "{{ portname_sshp }}:22/tcp"
       - "{{ portname_tlsp }}:443/tcp"
     volumes:
-      - "{{ gtlbconf }}:/etc/gitlab:z"
-      - "{{ gtlblogs }}:/var/log/gitlab:z"
-      - "{{ gtlbdata }}:/var/opt/gitlab:z"
+      - "{{ gtlbconf }}:/etc/gitlab:Z"
+      - "{{ gtlblogs }}:/var/log/gitlab:Z"
+      - "{{ gtlbdata }}:/var/opt/gitlab:Z"
     shm_size: "{{ shmquant }}"
     restart: "{{ gopolicy }}"
   {{ servname_dtbs }}:
-    image: "postgres:14"
+    image: "postgres:13"
     network_mode: "{{ ntwkconn }}"
     container_name: "{{ servname_dtbs }}"
     hostname: "{{ hostname_dtbs }}"
@@ -56,9 +56,9 @@ services:
       POSTGRES_USER: "{{ dtbsuser }}"
       POSTGRES_PASSWORD: "{{ dtbspass }}"
     ports:
-      - "{{ portname_dtbs }}:5432"
+      - "{{ portname_dtbs }}:5432/tcp"
     volumes:
-      - "{{ dtbsloca }}:/var/lib/postgresql/data:z"
+      - "{{ dtbsloca }}:/var/lib/postgresql/data:Z"
     shm_size: "{{ shmquant }}"
     restart: "{{ gopolicy }}"
   {{ servname_cach }}:
@@ -75,6 +75,6 @@ services:
           cpus: "{{ mincpugo_cach }}"
           memory: "{{ minramgo_cach }}"
     ports:
-      - "{{ portname_cach }}:6379"
+      - "{{ portname_cach }}:6379/tcp"
     shm_size: "{{ shmquant }}"
     restart: "{{ gopolicy }}"
