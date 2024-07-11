@@ -29,9 +29,9 @@ services:
         gitlab_rails["redis_host"] = "{{ servname_cach }}"
         gitlab_rails["redis_port"] = "{{ portname_cach }}"
     ports:
-      - "{{ portdist_http }}:80/tcp"
-      - "{{ portdist_sshp }}:22/tcp"
-      - "{{ portdist_tlsp }}:443/tcp"
+      - "{{ portname_http }}:80/tcp"
+      - "{{ portname_sshp }}:22/tcp"
+      - "{{ portname_tlsp }}:443/tcp"
     volumes:
       - "{{ gtlbconf }}:/etc/gitlab"
       - "{{ gtlblogs }}:/var/log/gitlab"
