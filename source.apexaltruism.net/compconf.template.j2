@@ -2,30 +2,79 @@
 version: "3.8"
 name: "{{ servname | replace('.', '_') }}"
 services:
-  {{ servname }}:
+  {{ servname_frnt }}:
     image: "gitlab/gitlab-ce:17.1.0-ce.0"
     network_mode: "{{ ntwkconn }}"
-    container_name: "{{ servname }}"
-    hostname: "{{ hostname }}"
+    container_name: "{{ servname_frnt }}"
+    hostname: "{{ hostname_frnt }}"
     deploy:
       resources:
         limits:
-          cpus: "{{ maxcpugo }}"
-          memory: "{{ maxramgo }}"
+          cpus: "{{ maxcpugo_frnt }}"
+          memory: "{{ maxramgo_frnt }}"
         reservations:
-          cpus: "{{ mincpugo }}"
-          memory: "{{ minramgo }}"
+          cpus: "{{ mincpugo_frnt }}"
+          memory: "{{ minramgo_frnt }}"
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url "https://source.apexaltruism.net"
-        gitlab_rails["gitlab_shell_ssh_port"] = 2424
+        external_url "{{ extrlink }}"
+        gitlab_rails["gitlab_shell_ssh_port"] = "{{ portname_sshp }}"
         gitlab_rails["lfs_enabled"] = true
+        gitlab_rails["db_adapter"] = "postgresql"
+        gitlab_rails["db_encoding"] = "utf8"
+        gitlab_rails["db_host"] = "{{ servname_dtbs }}"
+        gitlab_rails["db_port"] = "{{ portname_dtbs }}"
+        gitlab_rails["db_username"] = "{{ dtbsuser }}"
+        gitlab_rails["db_password"] = "{{ dtbspass }}"
+        gitlab_rails["redis_host"] = "{{ servname_cach }}"
+        gitlab_rails["redis_port"] = "{{ portname_cach }}"
     ports:
-      - "{{ portdist_http }}"
-      - "{{ portdist_sshp }}"
-      - "{{ portdist_tlsp }}"
+      - "{{ portdist_http }}:80/tcp"
+      - "{{ portdist_sshp }}:22/tcp"
+      - "{{ portdist_tlsp }}:443/tcp"
     volumes:
       - "{{ gtlbconf }}:/etc/gitlab"
       - "{{ gtlblogs }}:/var/log/gitlab"
       - "{{ gtlbdata }}:/var/opt/gitlab"
     shm_size: "{{ shmquant }}"
+    restart: "{{ gopolicy }}"
+  {{ servname_dtbs }}:
+    image: "postgres:16"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_dtbs }}"
+    hostname: "{{ hostname_dtbs }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_dtbs }}"
+          memory: "{{ maxramgo_dtbs }}"
+        reservations:
+          cpus: "{{ mincpugo_dtbs }}"
+          memory: "{{ minramgo_dtbs }}"
+    environment:
+      POSTGRES_DB: "{{ dtbsname }}"
+      POSTGRES_USER: "{{ dtbsuser }}"
+      POSTGRES_PASSWORD: "{{ dtbspass }}"
+    ports:
+      - "{{ portname_dtbs }}:5432"
+    volumes:
+      - "{{ dtbsloca }}:/var/lib/postgres/data"
+    shm_size: "{{ shmquant }}"
+    restart: "{{ gopolicy }}"
+  {{ servname_cach }}:
+    image: "redis:latest"
+    network_mode: "{{ ntwkconn }}"
+    container_name: "{{ servname_cach }}"
+    hostname: "{{ hostname_cach }}"
+    deploy:
+      resources:
+        limits:
+          cpus: "{{ maxcpugo_cach }}"
+          memory: "{{ maxramgo_cach }}"
+        reservations:
+          cpus: "{{ mincpugo_cach }}"
+          memory: "{{ minramgo_cach }}"
+    ports:
+      - "{{ portname_cach }}:6379"
+    shm_size: "{{ shmquant }}"
+    restart: "{{ gopolicy }}"
