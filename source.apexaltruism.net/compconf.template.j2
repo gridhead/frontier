@@ -39,7 +39,7 @@ services:
     shm_size: "{{ shmquant }}"
     restart: "{{ gopolicy }}"
   {{ servname_dtbs }}:
-    image: "postgres:16"
+    image: "postgres:14"
     network_mode: "{{ ntwkconn }}"
     container_name: "{{ servname_dtbs }}"
     hostname: "{{ hostname_dtbs }}"
