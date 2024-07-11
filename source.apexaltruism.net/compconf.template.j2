@@ -33,9 +33,9 @@ services:
       - "{{ portname_sshp }}:22/tcp"
       - "{{ portname_tlsp }}:443/tcp"
     volumes:
-      - "{{ gtlbconf }}:/etc/gitlab"
-      - "{{ gtlblogs }}:/var/log/gitlab"
-      - "{{ gtlbdata }}:/var/opt/gitlab"
+      - "{{ gtlbconf }}:/etc/gitlab:z"
+      - "{{ gtlblogs }}:/var/log/gitlab:z"
+      - "{{ gtlbdata }}:/var/opt/gitlab:z"
     shm_size: "{{ shmquant }}"
     restart: "{{ gopolicy }}"
   {{ servname_dtbs }}:
@@ -58,7 +58,7 @@ services:
     ports:
       - "{{ portname_dtbs }}:5432"
     volumes:
-      - "{{ dtbsloca }}:/var/lib/postgres/data"
+      - "{{ dtbsloca }}:/var/lib/postgresql/data:z"
     shm_size: "{{ shmquant }}"
     restart: "{{ gopolicy }}"
   {{ servname_cach }}:
