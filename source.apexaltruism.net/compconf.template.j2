@@ -3,7 +3,7 @@ version: "3.8"
 name: "{{ servname | replace('.', '_') }}"
 services:
   {{ servname_frnt }}:
-    image: "gitlab/gitlab-ce:16.11.6-ce.0"
+    image: "gitlab/gitlab-ce:17.1.2-ce.0"
     network_mode: "{{ ntwkconn }}"
     container_name: "{{ servname_frnt }}"
     hostname: "{{ hostname_frnt }}"
@@ -39,7 +39,7 @@ services:
     shm_size: "{{ shmquant }}"
     restart: "{{ gopolicy }}"
   {{ servname_dtbs }}:
-    image: "postgres:13"
+    image: "postgres:14"
     network_mode: "{{ ntwkconn }}"
     container_name: "{{ servname_dtbs }}"
     hostname: "{{ hostname_dtbs }}"
