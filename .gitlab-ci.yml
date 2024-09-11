@@ -3,6 +3,7 @@
 
 include:
   - local: "acmecorp.apexaltruism.net/import.yml"
+  - local: "ankitsinha.net/import.yml"
   - local: "apexaltruism.net/import.yml"
   - local: "blog.apexaltruism.net/import.yml"
   - local: "chat.apexaltruism.net/import.yml"

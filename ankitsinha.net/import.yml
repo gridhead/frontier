@@ -1,0 +1,3 @@
+include:
+  - local: "ankitsinha.net/function/cease.yml"
+  - local: "ankitsinha.net/function/serve.yml"
